@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  overflow: hidden;
+  margin: auto;
 }
 
 .App-logo {
@@ -35,4 +37,49 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.alphabet {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.letter {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10vmin;
+  padding-left: 2vmin;
+  padding-right: 2vmin;
+}
+
+.disabledLetter {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10vmin;
+  padding-left: 2vmin;
+  padding-right: 2vmin;
+  text-decoration: line-through;
+}
+
+.wordList {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.wordLetter {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10vmin;
+  padding-left: 2vmin;
+  padding-right: 2vmin;
+}
+
+.blankLetter {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10vmin;
+  padding-left: 2vmin;
+  padding-right: 2vmin;
 }
