@@ -117,7 +117,11 @@ function App() {
         <div>
           <button onClick={newGame}>Different Word?</button>
           <Picture currentPic={currentPic} />
-          <Word wordArray={wordArray} usedLetters={usedLetters} />
+          <Word
+            wordArray={wordArray}
+            usedLetters={usedLetters}
+            setUsedLetters={setUsedLetters}
+          />
           <Alphabet
             alphEntries={alphEntries}
             handleClick={handleClick}

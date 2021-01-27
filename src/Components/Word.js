@@ -1,8 +1,9 @@
 import React from "react";
 
-const Word = ({ wordArray, usedLetters, gameOver }) => {
+const Word = ({ wordArray, usedLetters, gameOver, setUsedLetters }) => {
   const wordObj = Object.entries(wordArray);
-  const regex = /[!:,\.\(\)\s]/g;
+  const regex = /[,.?!():&]/g;
+  const space = /\s/g;
 
   console.log(wordObj);
   console.log(usedLetters, "USED LETTERS");
@@ -23,7 +24,8 @@ const Word = ({ wordArray, usedLetters, gameOver }) => {
     <div>
       <ul className="wordList">
         {wordObj.map((letter) => {
-          if (regex.test(letter[1])) {
+          if (regex.test(letter[1]) || space.test(letter[1])) {
+            // setUsedLetters([...usedLetters, letter[1]]);
             return (
               // special character
               <li className="wordLetter" key={letter[0]}>
