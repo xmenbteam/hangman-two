@@ -98,6 +98,11 @@ function App() {
       {gameOver ? (
         <div>
           <Gameover word={word} newGame={newGame} winner={winner} />
+          <Word
+            wordArray={wordArray}
+            usedLetters={usedLetters}
+            gameOver={gameOver}
+          />
         </div>
       ) : (
         <div>
