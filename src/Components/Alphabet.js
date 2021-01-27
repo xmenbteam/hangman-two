@@ -14,7 +14,7 @@ const Alphabet = ({ alphEntries, handleClick, usedLetters }) => {
             </li>
           ) : (
             <li key={letter[0]}>
-              <button className="disabledLetter" disabled="true">
+              <button className="disabledLetter" disabled={true}>
                 {letter[1]}
               </button>
             </li>

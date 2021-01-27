@@ -9,7 +9,6 @@ const Gameover = ({ word, newGame, winner }) => {
       ) : (
         <p>The word was {word} you fool!</p>
       )}
-
       <button onClick={newGame}>Play again?</button>
     </div>
   );

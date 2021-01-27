@@ -37,57 +37,71 @@ const alphEntries = Object.entries(alph);
 
 function App() {
   const [usedLetters, setUsedLetters] = useState([]);
+  const [correctLetters, setCorrectLetters] = useState([]);
+
   const [wordsArray, setWordsArray] = useState([
     "as",
-    "NOGGIN",
-    "FARMERS",
-    "RUMPLESTILTSKIN",
+    "bye",
+    "FARM",
+    "tangled",
   ]);
   const [word, setWord] = useState(wordsArray[0]);
+  const [wordArray, setWordArray] = useState(word.toUpperCase().split(""));
+
   const [pictures] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   const [currentPic, setCurrentPic] = useState(pictures[0]);
+
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(false);
-  const [wordArray] = useState(word.toUpperCase().split(""));
-  const [newWordArray, setNewWordArray] = useState([]);
 
   const handleClick = (letterData) => {
-    // console.log(letterData.target.innerText, "LETTERDATA");
     const letter = letterData.target.innerText;
     // if the letter isn't in the chosen word array move the picture on
     wordArray.indexOf(letter) === -1
       ? setCurrentPic(pictures[currentPic + 1])
-      : setNewWordArray([...newWordArray, letter]);
+      : // but if it is, push it in to the new word array
+        setCorrectLetters([...correctLetters, letter]);
     // if the letter isn't in the used letter array, add it to the letter array
     usedLetters.indexOf(letter) === -1 &&
       setUsedLetters([...usedLetters, letter]);
   };
 
+  const randomNum = () => {
+    const randomNumber = Math.floor(Math.random() * wordsArray.length);
+    return randomNumber;
+  };
+
   const newGame = () => {
     setGameOver(false);
+    setUsedLetters([]);
+    setCorrectLetters([]);
+    setWord(wordsArray[randomNum()]);
+    setWordArray(word.toUpperCase().split(""));
     setCurrentPic(pictures[0]);
-    setWord(wordsArray[1]);
+    setWinner(false);
   };
 
   useEffect(() => {
     if (currentPic === 8) {
       setGameOver(true);
       setWinner(false);
-    } else if (newWordArray.length === wordArray.length) {
+    } else if (correctLetters.length === wordArray.length) {
       setGameOver(true);
       setWinner(true);
     }
-  }, [usedLetters, currentPic, gameOver, newWordArray, wordArray]);
+  }, [usedLetters, gameOver, currentPic, correctLetters, wordArray]);
 
   return (
     <div className="App">
       <h1>Hangman</h1>
+
       {gameOver ? (
         <div>
           <Gameover word={word} newGame={newGame} winner={winner} />
         </div>
       ) : (
         <div>
+          <button onClick={newGame}>Different Word?</button>
           <Picture currentPic={currentPic} />
           <Word wordArray={wordArray} usedLetters={usedLetters} />
           <Alphabet
