@@ -32,6 +32,16 @@ const alph = {
   24: "X",
   25: "Y",
   26: "Z",
+  27: "0",
+  28: "1",
+  29: "2",
+  30: "3",
+  31: "4",
+  32: "5",
+  33: "6",
+  34: "7",
+  35: "8",
+  36: "9",
 };
 const alphEntries = Object.entries(alph);
 
@@ -40,10 +50,9 @@ function App() {
   const [correctLetters, setCorrectLetters] = useState([]);
 
   const [wordsArray, setWordsArray] = useState([
-    "as",
-    "bye",
-    "FARM",
-    "tangled",
+    "test: one",
+    "test, 2",
+    "test (three)",
   ]);
   const [word, setWord] = useState(wordsArray[0]);
   const [wordArray, setWordArray] = useState(word.toUpperCase().split(""));
