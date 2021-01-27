@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "../App.css";
 
 const Alphabet = ({ alphEntries, handleClick, usedLetters }) => {
-  console.log(usedLetters, "used letters in alphabet");
   return (
     <div>
       <ul className="alphabet">

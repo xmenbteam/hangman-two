@@ -6,11 +6,11 @@ const Word = ({ wordArray, usedLetters }) => {
       <ul className="wordList">
         {wordArray.map((letter) => {
           return usedLetters.indexOf(letter) === -1 ? (
-            <li className="blankLetter">
+            <li className="blankLetter" key={letter}>
               <p>_</p>
             </li>
           ) : (
-            <li className="wordLetter">
+            <li className="wordLetter" key={letter}>
               <p>{letter}</p>
             </li>
           );
