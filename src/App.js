@@ -11,6 +11,7 @@ function App() {
   const [correctLetters, setCorrectLetters] = useState([]);
 
   const [wordsArray, setWordsArray] = useState([
+    "word",
     "test: one",
     "test, 2",
     "test (three)",
