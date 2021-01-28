@@ -11,7 +11,7 @@ function App() {
   const [correctLetters, setCorrectLetters] = useState([]);
 
   const [wordsArray, setWordsArray] = useState([
-    "word",
+    "Holy Shit! This Works!",
     "test: one",
     "test, 2",
     "test (three)",
@@ -52,30 +52,28 @@ function App() {
     setWinner(false);
   };
 
-  // const wordArr = [];
-  // const isWin = () => {
-  //   // filter out the letters themselves in the arrays and check they're all there
-  //   const clickedLetters = correctLetters.sort();
-  //   const wordLetters = wordArray.sort();
-
-  //   for (let i in wordLetters) {
-  //     for (let j in clickedLetters) {
-  //       if (wordLetters[i] === clickedLetters[j]) {
-  //         wordArr.push(wordLetters[i]);
-  //       }
-  //     }
-  //   }
-  //   console.log(wordArr, "WORD ARR");
-  //   console.log(clickedLetters, "clicked letters");
-  //   console.log(wordLetters, "wordletters");
-  // };
-
   useEffect(() => {
+    const sortUsed = (usedLetters) => {
+      const sortedUsed = usedLetters.sort().toString();
+      return sortedUsed;
+    };
+
+    const sortWord = (wordArray) => {
+      const regex = /[A-Z0-9]/g;
+      const reducedWord = Array.from(new Set(wordArray));
+      const sortedWord = reducedWord.sort().toString();
+      const filteredWord = sortedWord.match(regex).toString();
+      return filteredWord;
+    };
+
+    const sortedUsed = sortUsed(usedLetters);
+    const sortedWord = sortWord(wordArray);
+
     // isWin();
     if (currentPic === 8) {
       setGameOver(true);
       setWinner(false);
-    } else if (correctLetters.length === wordArray.length) {
+    } else if (sortedUsed === sortedWord) {
       setGameOver(true);
       setWinner(true);
     }
