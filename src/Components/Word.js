@@ -24,7 +24,15 @@ const Word = ({ wordArray, usedLetters, gameOver, setUsedLetters }) => {
     <div>
       <ul className="wordList">
         {wordObj.map((letter) => {
-          if (regex.test(letter[1]) || space.test(letter[1])) {
+          if (space.test(letter[1])) {
+            return (
+              // special character
+              <li className="wordLetter" key={letter[0]}>
+                <p>/</p>
+                {/* {console.log(letter, "CHARACTER")} */}
+              </li>
+            );
+          } else if (regex.test(letter[1])) {
             // setUsedLetters([...usedLetters, letter[1]]);
             return (
               // special character
