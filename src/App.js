@@ -5,25 +5,32 @@ import Word from "./Components/Word";
 import Alphabet from "./Components/Alphabet";
 import Gameover from "./Components/Gameover";
 import alphEntries from "./bits";
+import getRandomMovie from "./Components/API";
 
 function App() {
   const [usedLetters, setUsedLetters] = useState([]);
   const [correctLetters, setCorrectLetters] = useState([]);
 
-  const [wordsArray, setWordsArray] = useState([
-    "Holy Shit! This Works!",
-    "test: one",
-    "test, 2",
-    "test (three)",
-  ]);
+  const [wordsArray, setWordsArray] = useState(["WELCOME!"]);
   const [word, setWord] = useState(wordsArray[0]);
-  const [wordArray, setWordArray] = useState(word.toUpperCase().split(""));
+  const [wordArray, setWordArray] = useState(word);
 
   const [pictures] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   const [currentPic, setCurrentPic] = useState(pictures[0]);
 
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(false);
+
+  useEffect(() => {
+    getRandomMovie().then((res) => {
+      // console.log(res.results, "RESPONSE");
+      const array = res.results;
+      const newArray = array.map((film) => {
+        return film.title;
+      });
+      setWordsArray(newArray);
+    });
+  }, []);
 
   const handleClick = (letterData) => {
     const letter = letterData.target.innerText;
@@ -53,8 +60,8 @@ function App() {
   };
 
   useEffect(() => {
-    const sortUsed = (usedLetters) => {
-      const sortedUsed = usedLetters.sort().toString();
+    const sortUsed = (correctLetters) => {
+      const sortedUsed = correctLetters.sort().toString();
       return sortedUsed;
     };
 
@@ -66,8 +73,11 @@ function App() {
       return filteredWord;
     };
 
-    const sortedUsed = sortUsed(usedLetters);
+    const sortedUsed = sortUsed(correctLetters);
     const sortedWord = sortWord(wordArray);
+
+    console.log(sortedWord, "SORTED WORD");
+    console.log(sortedUsed, "SORTED USED");
 
     // isWin();
     if (currentPic === 8) {
