@@ -87,11 +87,11 @@ function App() {
       setGameOver(true);
       setWinner(true);
     }
-  }, [usedLetters, gameOver, currentPic, correctLetters, wordArray]);
+  }, [usedLetters, gameOver, currentPic, correctLetters, wordArray, word]);
 
   return (
     <div className="App">
-      <h1>Hangman</h1>
+      <h1>Oh look it's Hangman!</h1>
 
       {gameOver ? (
         <div>
