@@ -5,7 +5,7 @@ import Word from "./Components/Word";
 import Alphabet from "./Components/Alphabet";
 import Gameover from "./Components/Gameover";
 import alphEntries from "./bits";
-import getRandomMovie from "./Components/API";
+import getRandomWords from "./Components/API";
 
 function App() {
   const [usedLetters, setUsedLetters] = useState([]);
@@ -22,13 +22,14 @@ function App() {
   const [winner, setWinner] = useState(false);
 
   useEffect(() => {
-    getRandomMovie().then((res) => {
-      // console.log(res.results, "RESPONSE");
-      const array = res.results;
-      const newArray = array.map((film) => {
-        return film.title;
+    getRandomWords().then((res) => {
+      console.log(res, "RESPONSE");
+      const array = res;
+      const newArray = array.map((word) => {
+        return word.word;
       });
       setWordsArray(newArray);
+      console.log(wordsArray, "WORDS ARRAY");
     });
   }, []);
 
@@ -91,7 +92,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Oh look it's Hangman!</h1>
+      <h1>Obscure Word Hangman!</h1>
+      <h2>
+        Powered by{" "}
+        <a href="http://www.wordnik.com" target="blank">
+          Wordnik
+        </a>
+      </h2>
 
       {gameOver ? (
         <div>
