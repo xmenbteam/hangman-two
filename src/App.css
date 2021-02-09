@@ -2,6 +2,7 @@
   text-align: center;
   overflow: hidden;
   margin: auto;
+  max-width: 1440px;
 }
 
 .App-logo {
@@ -49,14 +50,14 @@
 
 .letter {
   font-family: "Courier New", Courier, monospace;
-  font-size: 10vmin;
+  font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
 }
 
 .disabledLetter {
   font-family: "Courier New", Courier, monospace;
-  font-size: 10vmin;
+  font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
   text-decoration: line-through;
@@ -72,14 +73,14 @@
 
 .wordLetter {
   font-family: "Courier New", Courier, monospace;
-  font-size: 10vmin;
+  font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
 }
 
 .blankLetter {
   font-family: "Courier New", Courier, monospace;
-  font-size: 10vmin;
+  font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
 }

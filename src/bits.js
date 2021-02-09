@@ -25,6 +25,9 @@ const alph = {
   24: "X",
   25: "Y",
   26: "Z",
+};
+
+const nums = {
   27: "0",
   28: "1",
   29: "2",
@@ -37,6 +40,5 @@ const alph = {
   36: "9",
 };
 
-const alphEntries = Object.entries(alph);
-
-export default alphEntries;
+export const alphEntries = Object.entries(alph);
+export const numEntries = Object.entries(nums);

@@ -2,7 +2,7 @@ import React from "react";
 
 const Word = ({ wordArray, usedLetters, gameOver, setUsedLetters }) => {
   const wordObj = Object.entries(wordArray);
-  const regex = /[,.?!():&]/g;
+  const regex = /[,.?!():&@]/g;
   const space = /\s/g;
 
   // console.log(wordObj);
@@ -29,7 +29,7 @@ const Word = ({ wordArray, usedLetters, gameOver, setUsedLetters }) => {
               // special character
               <li className="wordLetter" key={letter[0]}>
                 <p>/</p>
-                {/* {console.log(letter, "CHARACTER")} */}
+                {console.log(letter, "CHARACTER")}
               </li>
             );
           } else if (regex.test(letter[1])) {
@@ -38,20 +38,20 @@ const Word = ({ wordArray, usedLetters, gameOver, setUsedLetters }) => {
               // special character
               <li className="wordLetter" key={letter[0]}>
                 <p>{letter[1]}</p>
-                {/* {console.log(letter, "CHARACTER")} */}
+                {console.log(letter, "CHARACTER")}
               </li>
             );
           } else if (usedLetters.indexOf(letter[1]) === -1) {
             return (
               <li className="blankLetter" key={letter[0]}>
-                {/* {console.log(letter, "BLANK LETTER")} */}
+                {console.log(letter, "BLANK LETTER")}
                 <p>_</p>
               </li>
             );
           } else
             return (
               <li className="wordLetter" key={letter[0]}>
-                {/* {console.log(letter, "SHOWING LETTER")} */}
+                {console.log(letter, "SHOWING LETTER")}
                 <p>{letter[1]}</p>
               </li>
             );

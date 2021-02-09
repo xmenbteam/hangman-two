@@ -4,18 +4,15 @@ import Picture from "./Components/Pic";
 import Word from "./Components/Word";
 import Alphabet from "./Components/Alphabet";
 import Gameover from "./Components/Gameover";
-import alphEntries from "./bits";
+import { alphEntries, numEntries } from "./bits";
+// import wordsArrayImp from "./Components/Words";
+import getRandomMovie from "./Components/API";
 
 function App() {
   const [usedLetters, setUsedLetters] = useState([]);
   const [correctLetters, setCorrectLetters] = useState([]);
 
-  const [wordsArray, setWordsArray] = useState([
-    "Holy Shit! This Works!",
-    "test: one",
-    "test, 2",
-    "test (three)",
-  ]);
+  const [wordsArray, setWordsArray] = useState(["welcome"]);
   const [word, setWord] = useState(wordsArray[0]);
   const [wordArray, setWordArray] = useState(word.toUpperCase().split(""));
 
@@ -24,6 +21,17 @@ function App() {
 
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(false);
+
+  const setWords = () => {
+    getRandomMovie().then((movieData) => {
+      const words = [];
+      console.log(movieData.results);
+      movieData.results.map((movie) => {
+        return words.push(movie);
+      });
+      console.log(words);
+    });
+  };
 
   const handleClick = (letterData) => {
     const letter = letterData.target.innerText;
@@ -81,6 +89,7 @@ function App() {
 
   return (
     <div className="App">
+      {setWords()}
       <h1>Hangman</h1>
 
       {gameOver ? (
@@ -103,6 +112,7 @@ function App() {
           />
           <Alphabet
             alphEntries={alphEntries}
+            numEntries={numEntries}
             handleClick={handleClick}
             usedLetters={usedLetters}
           />
