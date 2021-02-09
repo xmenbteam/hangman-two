@@ -2,7 +2,7 @@
   text-align: center;
   overflow: hidden;
   margin: auto;
-  max-width: 1440px;
+  max-width: 1024px;
 }
 
 .App-logo {
@@ -49,18 +49,27 @@
 }
 
 .letter {
+  text-align: center;
   font-family: "Courier New", Courier, monospace;
   font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
+  width: 5vmin;
+  border: none;
+  background: none;
 }
 
 .disabledLetter {
+  text-align: center;
   font-family: "Courier New", Courier, monospace;
   font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
   text-decoration: line-through;
+  width: 5vmin;
+  border: none;
+  border: none;
+  background: none;
 }
 
 .wordList {
@@ -76,6 +85,7 @@
   font-size: 5vmin;
   padding-left: 2vmin;
   padding-right: 2vmin;
+  font-size: 5vmin;
 }
 
 .blankLetter {

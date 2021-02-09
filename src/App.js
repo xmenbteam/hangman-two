@@ -6,15 +6,15 @@ import Alphabet from "./Components/Alphabet";
 import Gameover from "./Components/Gameover";
 import { alphEntries, numEntries } from "./bits";
 // import wordsArrayImp from "./Components/Words";
-import getRandomMovie from "./Components/API";
+import getRandomWords from "./Components/API";
 
 function App() {
   const [usedLetters, setUsedLetters] = useState([]);
   const [correctLetters, setCorrectLetters] = useState([]);
 
-  const [wordsArray, setWordsArray] = useState(["welcome"]);
+  const [wordsArray, setWordsArray] = useState(["WELCOME!"]);
   const [word, setWord] = useState(wordsArray[0]);
-  const [wordArray, setWordArray] = useState(word.toUpperCase().split(""));
+  const [wordArray, setWordArray] = useState(word);
 
   const [pictures] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   const [currentPic, setCurrentPic] = useState(pictures[0]);
@@ -22,16 +22,17 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(false);
 
-  const setWords = () => {
-    getRandomMovie().then((movieData) => {
-      const words = [];
-      console.log(movieData.results);
-      movieData.results.map((movie) => {
-        return words.push(movie);
+  useEffect(() => {
+    getRandomWords().then((res) => {
+      console.log(res, "RESPONSE");
+      const array = res;
+      const newArray = array.map((word) => {
+        return word.word;
       });
-      console.log(words);
+      setWordsArray(newArray);
+      console.log(wordsArray, "WORDS ARRAY");
     });
-  };
+  }, []);
 
   const handleClick = (letterData) => {
     const letter = letterData.target.innerText;
@@ -61,8 +62,8 @@ function App() {
   };
 
   useEffect(() => {
-    const sortUsed = (usedLetters) => {
-      const sortedUsed = usedLetters.sort().toString();
+    const sortUsed = (correctLetters) => {
+      const sortedUsed = correctLetters.sort().toString();
       return sortedUsed;
     };
 
@@ -74,8 +75,11 @@ function App() {
       return filteredWord;
     };
 
-    const sortedUsed = sortUsed(usedLetters);
+    const sortedUsed = sortUsed(correctLetters);
     const sortedWord = sortWord(wordArray);
+
+    console.log(sortedWord, "SORTED WORD");
+    console.log(sortedUsed, "SORTED USED");
 
     // isWin();
     if (currentPic === 8) {
@@ -85,12 +89,17 @@ function App() {
       setGameOver(true);
       setWinner(true);
     }
-  }, [usedLetters, gameOver, currentPic, correctLetters, wordArray]);
+  }, [usedLetters, gameOver, currentPic, correctLetters, wordArray, word]);
 
   return (
     <div className="App">
-      {setWords()}
-      <h1>Hangman</h1>
+      <h1>Obscure Word Hangman!</h1>
+      <h2>
+        Powered by{" "}
+        <a href="http://www.wordnik.com" target="blank">
+          Wordnik
+        </a>
+      </h2>
 
       {gameOver ? (
         <div>
